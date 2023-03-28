@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 import express from 'express'
 
 const app = express();
-const PORT = 3300;
+const PORT = process.env.PORT || 3300;
 
 app.listen(PORT, ()=> {
     console.log(`Minigram server is running on port ${PORT}`);

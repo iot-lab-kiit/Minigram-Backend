@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const connectToDatabase = async ()=>{
 
     if(mongoose.connections[0]){
         return;
     }
-    await mongoose.connect("mongodb+srv://mini:imQhKWBavKgcggYf@cluster0.wbx1lol.mongodb.net/?retryWrites=true&w=majority").
+    await mongoose.connect(process.env.CONNECTION_URL).
     then(()=>console.log("Connected"))
     .catch((err)=>console.log(err))
 }
