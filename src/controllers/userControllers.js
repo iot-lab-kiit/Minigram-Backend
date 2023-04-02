@@ -45,3 +45,42 @@ export const signin = async(req, res) => {
         res.status(500).json({message: 'Could not sign in.'});
     }
 }
+
+export const getUsers = async(req, res) => {
+    try{
+        const users = await User.find()
+        res.status(200).json(users);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+export const updateUser = async(req, res) => {
+    const user = req.body;
+    const {id} = req.params;
+    try{
+
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No user with this id"});
+
+        const updatedUser = await User.findByIdAndUpdate(id, {...user,id}, {new : true});
+
+        res.json(updatedUser);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+export const deleteUser = async(req, res) => {
+    const {id} = req.params;
+
+    try{
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No user with this id"});
+
+        await User.findByIdAndDelete(id);
+
+        res.json({message: "Deleted user succesfully"});
+    }catch(error){
+        console.log(error);
+        res.json({message: error.message});
+    }
+}
