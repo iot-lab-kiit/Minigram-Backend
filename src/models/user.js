@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const userSchema = mongoose.Schema({
     name: {
@@ -22,12 +22,15 @@ const userSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
-    gender: {
+    gender: String,
+    profilePic: {
         type: String,
-        required: true,
+        default: "",
     },
-    profilePic: String,
-    bio: String,
+    bio: {
+        type: String,
+        default: "",
+    },
     posts: {
         type: [mongoose.Schema.Types.ObjectId],
         references: "postSchema",
@@ -42,3 +45,5 @@ const userSchema = mongoose.Schema({
         default: new Date()
     }
 })
+
+export default mongoose.model("User", userSchema);
