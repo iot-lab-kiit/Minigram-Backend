@@ -1,40 +1,40 @@
 import mongoose from 'mongoose'
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     username: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
-        required: true,
+        required: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
     address: String,
     age: {
         type: Number,
-        required: true,
+        required: true
     },
     gender: String,
     profilePic: {
         type: String,
-        default: "",
+        default: ""
     },
     bio: {
         type: String,
-        default: "",
+        default: ""
     },
     posts: {
         type: [mongoose.Schema.Types.ObjectId],
         references: "postSchema",
-        default: [],
+        default: []
     },
     createdAt: {
         type: Date,
