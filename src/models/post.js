@@ -1,25 +1,25 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 
-const postSchema = mongoose.Schema({
+const postSchema = new mongoose.Schema({
     message: String,
     creator: {
-        types: mongoose.Schema.Types.ObjectId,
-        ref: "userSchema",
-        required: "true",
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
     },
     selectedFile: {
-        types: [String],
-        required: true,
+        type: [String],
+        required: true
     },
     likes: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "userSchema",
-        default: [],
+        ref: 'User',
+        default: []
     },
     comments: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "commentSchema",
-        default: [],
+        ref: 'Comments',
+        default: []
     },
     createdAt: {
         type: Date,
@@ -30,3 +30,5 @@ const postSchema = mongoose.Schema({
         default: new Date()
     }
 })
+
+export default mongoose.model("Post", postSchema);
