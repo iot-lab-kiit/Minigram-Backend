@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import User from '../models/user.js';
+import User from '../models/User.js';
 
 export const signup = async(req, res) => {
     const {email, password} = req.body;
@@ -17,7 +17,7 @@ export const signup = async(req, res) => {
 
         const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: "1h"});
 
-        res.status(200).json({message:"User signed up succesfully!"});
+        res.status(200).json(token);
 
     }catch(error){
         console.log(error);
