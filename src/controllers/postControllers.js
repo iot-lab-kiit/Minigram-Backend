@@ -74,7 +74,7 @@ export const likePost = async(req, res )=> {
 
     const post = await Post.findById(id);
 
-    const index = post.likes.findIndex((id)=> id === String(req.userId));
+    const index = post.likes.findIndex((id)=> id === String(req.user));
 
     if(index === -1){
         post.likes.push(req.user);
