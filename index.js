@@ -4,6 +4,8 @@ import express from 'express';
 import userRoutes from './src/routes/user.js';
 import postRoutes from './src/routes/post.js';
 import commentRoutes from './src/routes/comments.js';
+import conversationRoutes from './src/routes/conversation.js'
+import messageRoutes from './src/routes/messages.js'
 dotenv.config();
 
 const app = express();
@@ -22,3 +24,5 @@ app.use(express.urlencoded({limit: '50mb'}));
 app.use('/user',userRoutes);
 app.use('/post',postRoutes);
 app.use('/comments',commentRoutes);
+app.use('/conversation',conversationRoutes);
+app.use('/messages',messageRoutes);
